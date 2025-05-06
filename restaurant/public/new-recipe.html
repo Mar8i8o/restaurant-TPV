@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Recipe</title>
+    <link rel="stylesheet" href="./css/new-recipe.css">
+    <script defer src="./js/new-recipe.js"></script>
+</head>
+<body>
+    <main>
+        <form id="new-recipe-form" action="">
+            <h3>New Recipe</h3>
+            <div class="info">
+                <label for="nameOfRecipe">Name of the recipe</label>
+                <input name="nameOfRecipe" type="text">
+                <label for="desc">Description</label>
+                <input name="desc" type="text">
+            </div>
+ 
+            <div class="steps">
+                <h4>Steps</h4>
+                <textarea name="steps" id="" cols="30" rows="5"></textarea>
+            </div>
+
+            <div class="ingredients">
+                <h4>Ingredients</h4>
+                <div class="ingredient-container">
+                    <div>
+                        <input placeholder="Ingredient" list="ingredients" name="ingredients1" />
+                        <input placeholder="Quantity" type="number" name="quantity1" />
+                        <input placeholder="Type" type="list" list="measurements" name="mesurements1" />
+                        <button id="add-ingredient-button">+</button>
+                    </div>
+                </div>
+                <div id="ingredients-bubbles-container"></div>
+
+                <datalist id="ingredients">
+                    <option value="Potato"></option>
+                    <option value="Tomato"></option>
+                    <option value="Onion"></option>
+                    <option value="Spaguetti"></option>
+                </datalist>
+                <datalist id="measurements">
+                    <option value="Kg"></option>
+                    <option value="g"></option>
+                    <option value="Ud"></option>
+                    <option value="L"></option>
+                    <option value="ml"></option>
+                </datalist>
+            </div>
+
+            <div class="form-img-container">
+                <h4>Image</h4>
+                <div class="form-img">
+                    <input type="file" id="avatar" name="img" accept="image/png, image/jpeg" />
+                    <button>AI 🤖</button>
+                </div>
+            </div>
+
+            <div class="form-price">
+                <h4>Price</h4>
+                <div>
+                    <input type="number" name="price" id="">
+                    <input type="list" list="coins" name="price" id="">
+                    <datalist id="coins">
+                        <option value="$"></option>
+                        <option value="€"></option>
+                    </datalist>
+                    <span>Recommended price: </span><span>14€</span>
+                </div>
+            </div>
+
+            <input class="submit" type="submit" value="Create">
+        </form>
+    </main>
+</body>
+</html>

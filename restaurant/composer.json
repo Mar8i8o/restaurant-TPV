@@ -1,0 +1,10 @@
+{
+    "require": {
+        "monolog/monolog": "^3.5",
+        "nnnick/chartjs": "2.9.4",
+        "php-mqtt/client": "^2.1"
+    },
+    "autoload": {
+        "psr-0": {"": "src/"}
+    }
+}

@@ -1,0 +1,28 @@
+@use './index.css';
+@use './layout.css';
+
+.ordersList {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 15px;
+        background-color: var(--color60dark);
+        width: 100%;
+        max-height: 80px;
+        border-radius: 20px;
+
+        span {
+            margin-left: auto;
+        }
+        
+        object {
+            width: 40px;
+        }
+    }
+
+}

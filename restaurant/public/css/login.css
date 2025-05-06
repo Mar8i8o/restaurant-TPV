@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+*, *::before, *::after {
+  box-sizing: border-box; /* Set the sizing of an element to include it's border */
+}
+
+* {
+  margin: 0; /* Set the default margin to 0 */
+  padding: 0; /* Set the default padding to 0 */
+  text-decoration: none;
+}
+
+ul {
+  list-style: none; /* Turn off numbered and unordered list decoration */
+}
+
+html:focus-within {
+  scroll-behavior: smooth; /* Make the scrolling inside of any scrollable element smooth */
+}
+
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip-ink: auto; /* Makes link undelines look better */
+}
+
+img, picture, svg, video, canvas {
+  max-width: 100%; /* Makes it responsive */
+  height: auto; /* Makes it responsive */
+  vertical-align: middle; /* Makes text next to inline images look better */
+  font-style: italic; /* If the images don't load it makes the alt decription look better */
+  background-repeat: no-repeat;
+  /* The background repeat and size are there if you want to load a picture first like a backroung image that is worse quality while the better quality image loads */
+  background-size: cover;
+}
+
+input, button, textarea, select {
+  font: inherit; /* Makes these elements inherit fonts */
+}
+
+/* Turns off animation for people who don't want to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition: none;
+  }
+}
+body, html {
+  height: 100%; /* Makes the body element full screen */
+  scroll-behavior: smooth; /* Makes normal scrolling smooth */
+}
+
+:root {
+  /* COLORS */
+  --accentColor: rgb(255, 242, 120);
+  --color60: #FCFCFC;
+  --color60dark: #e5e5e5;
+  --tableBorder: #ededed;
+  --color30: rgb(51, 51, 51);
+  --color30light: rgb(76, 76, 76);
+  --corp1: #007934;
+  --corp1dark: #00642b;
+  --corp1cristal: #007934d1;
+  --red: #ff000072;
+  /* SHADOWS */
+  --divShadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+@font-face {
+  font-family: "Britanic";
+  src: url("/fonts/BRITANIC.TTF") format("opentype");
+}
+@font-face {
+  font-family: "DolceVita-bold";
+  src: url("/fonts/DolceVitaHeavyBold.TTF") format("opentype");
+}
+* {
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+} 
+body {
+  background-color: #f4f4f4;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.login-container img {
+  width: 70%;
+  filter: brightness(0%);
+  margin: 1em 0 2em 0;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-container input[type=text],
+.login-container input[type=password] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--corp1);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: var(--corp1dark);
+}/*# sourceMappingURL=login.css.map */

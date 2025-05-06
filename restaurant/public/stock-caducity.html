@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock</title>
+
+    <link rel="stylesheet" href="./css/stock.css">
+    <script defer type="module" src="./js/stock.js"></script>
+</head>
+<body>
+    <nav>
+        <div>
+            <img src="./img/ccsLogoWhite.png" alt="Cook Code System Logo">
+        </div>
+        <ul>
+            <a href="dashboard.php"><li> <object data="./svg/dashboard.svg" type="image/svg+xml"></object>Dashboard</li></a>
+            <a href="analytics.php"><li> <object data="./svg/graph.svg" type=""></object>Analytics</li></a>
+            <a href="stock.php"><li> <object data="./svg/stock.svg" type=""></object>Stock</li></a>
+            <a href="receipts.php"><li> <object data="./svg/receipt.svg" type=""></object>Receipts</li></a>
+            <a href="orders.php"><li> <object data="./svg/orders.svg" type=""></object>Orders</li></a>
+            <a href="settings.php"><li> <object data="./svg/settings.svg" type=""></object>Settings</li></a>   
+        </ul>
+    </nav>
+    
+    <main>
+        <h2 id="mainTitle">Stock</h2>
+
+
+        <table id="stockTable">
+            <div id="tableNav">
+                <div>
+                    <button id="filter-button">FILTER</button>
+                    <button id="filter-button">ORDER BY</button>
+                </div>
+                <button id="add-button">ADD</button>
+            </div>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product name</th>
+                    <th>Qty</th>
+                    <th>PVP</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>#1234</td>
+                <td>Tomates</td>
+                <td>4 Kg</td>
+                <td>3.50€ / Kg</td>
+                <td><object data="./svg/settingsB.svg" type=""></object></td>
+            </tr>
+            <tr>
+                <td>#234</td>
+                <td>Aceite</td>
+                <td>2 L</td>
+                <td>10.50€ / L</td>
+                <td><object data="./svg/settingsB.svg" type=""></object></td>
+            </tr>
+            <tr>
+                <td>#12</td>
+                <td>Botella de Agua 0.5L</td>
+                <td>14 Ud</td>
+                <td>1.50€ / Ud</td>
+                <td><object data="./svg/settingsB.svg" type=""></object></td>
+            </tr>
+        </table>
+    </main>
+</body>
+</html>

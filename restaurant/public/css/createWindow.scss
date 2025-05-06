@@ -1,0 +1,49 @@
+.uiWindow-bg, .uiWindow-blurBg {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10vh;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.uiWindow-blurBg {
+    backdrop-filter: blur(2px) brightness(90%);
+}
+
+.uiWindow {
+    display: flex;
+    flex-direction: column;
+    padding: 2em 1.5em;
+    background-color: var(--color60);
+    border-radius: 15px;
+
+    .uiWindow-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        button {
+            z-index: 99;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background-color: transparent;
+            font-weight: bolder;
+            &:hover {
+                cursor: pointer;
+            }
+
+            object {
+                background-color: transparent;
+                width: 40px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

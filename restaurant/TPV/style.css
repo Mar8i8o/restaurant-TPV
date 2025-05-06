@@ -1,0 +1,202 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #9BC695;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #417A3B;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ccc;
+    font-size: 18px;
+}
+
+.estado {
+    color: red;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.panel-izquierdo {
+    width: 40%;
+    background: rgb(255, 255, 255);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid #ccc;
+    overflow-y: auto;
+}
+
+.productos {
+    flex: 1;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #fdfdfd;
+}
+
+.teclado {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.teclado button {
+    padding: 15px;
+    font-size: 16px;
+    background-color: #d4e5ff;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.teclado button:active {
+    transform: scale(0.95);
+    background-color: #bcd4ff;
+}
+
+.panel-derecho {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    justify-content: center;
+    background-color: #9BC695;
+}
+
+.categorias {
+    display: flex;
+    flex-direction: column; /* Esto alinea los botones verticalmente */
+    gap: 8px;
+    width: 150px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.categorias button, .categorias-dinamicas button {
+    padding: 15px;
+    background-color: #aa84f9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    width: 100%; /* Asegura que los botones ocupen todo el ancho del contenedor */
+    text-align: center;
+}
+
+.categorias button:active, .categorias-dinamicas button:active {
+    transform: scale(0.95);
+    filter: brightness(0.9);
+    flex-direction: column; /* Alinea las categorías dinámicas de manera vertical */
+}
+
+/* Alineación de los botones dinámicos */
+.categorias-dinamicas {
+    display: flex;
+    flex-direction: column; /* Alinea las categorías dinámicas de manera vertical */
+    gap: 8px;
+    width: 150px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.productos-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0px;
+    height: 100%;
+    padding: 10px 10px;
+    background-color: #ffffff;
+    overflow-y: auto;
+}
+
+.producto-btn {
+    background-color: #e6ffe6;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 1px;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding: 5px;
+    max-width: 120px;
+    margin: 0;
+}
+
+.producto-btn:active {
+    transform: scale(0.95);
+    background-color: #cfffcc;
+}
+
+footer {
+    background-color: #417A3B;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border-top: 2px solid #ccc;
+}
+
+footer button {
+    padding: 15px 25px;
+    font-size: 16px;
+    background-color: #74D168;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+footer button:active {
+    transform: scale(0.95);
+    background-color: rgb(42, 75, 39);
+}
+
+/* Alineación de los productos seleccionados */
+#panelProductos {
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    gap: 10px; /* Espacio entre productos */
+    margin-top: 20px;
+}
+
+/* Estilo para los productos seleccionados, que se pongan verdes */
+.linea-producto.seleccionado {
+    background-color: #90ee90; /* Color verde claro cuando se selecciona */
+}
+
+/* Estilo para los productos seleccionados, que se pongan verdes */
+.linea-producto {
+    background-color: #ffffff; 
+}
+
+  /* Estilo para la modal */
+  #modalFondo {
+    background-color: #ffffff;
+  }
+
+

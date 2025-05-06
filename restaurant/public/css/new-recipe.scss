@@ -1,0 +1,170 @@
+@use './index.css';
+
+main {
+    padding: 2em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#new-recipe-form {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    h4 {
+        margin-top: 1em;
+    }
+
+    input {
+        padding: 5px;
+    }
+
+    .ingredient-container {
+        div {
+            display: flex;
+            flex-direction: row;
+
+            input:nth-child(1) {
+                width: 100%;
+            }
+
+            input:nth-child(2) {
+                width: 100px;
+                text-align: center;
+            }
+
+            input:nth-child(3) {
+                width: 100px;
+                text-align: center;
+            }
+            button {
+                outline: none;
+                cursor: pointer;
+                font-size: 16px;
+                line-height: 20px;
+                font-weight: 600;
+                padding: 7px 12px;
+                margin-left: 5px;
+                border-radius: 8px;
+                border: none;
+                transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+                background: var(--corp1);
+                color: #fff;
+
+                &:hover {
+                    background: var(--corp1dark);
+                }
+            }
+        }
+
+
+
+    }
+
+    #ingredients-bubbles-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 1em;
+
+        .ingredient-bubble {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 3px 10px;
+            gap: 5px;
+            background-color: var(--corp1cristal);
+            border-radius: 5px;
+            border: 2px solid var(--corp1cristal);
+
+            span {
+                color: white;
+                font-weight: bold;
+            }
+
+            button {
+                color: white;
+                font-weight: bold;
+                background: none;
+                border: none;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            
+        }
+    }
+
+    .form-img {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        button {
+            outline: none;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 14px 24px;
+            border: none;
+            transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+            background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+            color: #fff;
+        
+        }
+    }
+
+    .submit {
+        outline: none;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        border-radius: 8px;
+        margin-top: 1em;
+        padding: 14px 24px;
+        border: none;
+        transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+        background: var(--corp1);
+        color: #fff;
+
+        &:hover {
+            background: var(--corp1dark);
+        }
+    }
+
+    .form-price {
+        div {
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            align-items: end;
+            gap: 5px;
+        }
+
+        input {
+            width: 60px;
+            padding: 7px;
+        }
+
+        span {
+            color: gray;
+            font-weight: bold;
+        }
+    }
+}
+
+
+

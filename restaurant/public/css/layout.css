@@ -1,0 +1,48 @@
+nav {
+  padding-top: 1em;
+  color: var(--color60);
+  background-color: var(--corp1);
+  max-width: 350px;
+}
+nav div:nth-child(1) {
+  width: 220px;
+  padding: 1.5em 1em;
+}
+nav ul {
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+}
+nav ul li {
+  display: flex;
+  gap: 10px;
+  padding: 1em;
+  width: 100%;
+  transition: 0.2s;
+  cursor: pointer;
+}
+nav ul li:hover {
+  background-color: #008f3d;
+  transition: 0.2s;
+  font-weight: bold;
+  padding-left: 1.5em;
+}
+nav ul li object {
+  width: 20px;
+}
+nav a {
+  color: inherit;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  padding: 2em;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+main #mainTitle {
+  margin-bottom: 1em;
+}/*# sourceMappingURL=layout.css.map */

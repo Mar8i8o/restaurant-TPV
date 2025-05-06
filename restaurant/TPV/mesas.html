@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Mesas - TPV Restaurante</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .mesa-btn {
+      width: 150px;
+      height: 150px;
+      margin: 10px;
+      font-size: 16px;
+      display: inline-block;
+      text-align: center;
+      line-height: 150px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .mesa-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Gestión de Mesas</h1>
+  </header>
+
+  <div class="container">
+    <div class="panel-mesas">
+      <h3>Mesas Disponibles</h3>
+      <div id="mesasContainer"></div>
+    </div>
+  </div>
+
+  <footer>
+    <button onclick="window.location.href='index.php'">Volver a TPV</button>
+  </footer>
+
+  <script>
+    const mesasContainer = document.getElementById('mesasContainer');
+
+    fetch('database/mesas.php')
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          alert("Error al cargar las mesas.");
+        } else {
+          mostrarMesas(data);
+        }
+      })
+      .catch(error => {
+        console.error('Error al obtener las mesas:', error);
+        alert("Error al cargar las mesas.");
+      });
+
+    function mostrarMesas(mesas) {
+      mesasContainer.innerHTML = '';
+      if (mesas.length === 0) {
+        mesasContainer.innerHTML = '<p>No hay mesas disponibles</p>';
+      } else {
+        mesas.forEach(mesa => {
+          const btn = document.createElement('button');
+          btn.className = 'mesa-btn';
+          btn.textContent = `Mesa ${mesa.nombre}`;
+          btn.addEventListener('click', () => {
+            window.location.href = `index.php?mesa=${encodeURIComponent(mesa.nombre)}`;
+          });
+          mesasContainer.appendChild(btn);
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>

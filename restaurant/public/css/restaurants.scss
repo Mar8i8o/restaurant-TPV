@@ -1,0 +1,106 @@
+body {
+    background-color: var(--color60dark);
+    justify-content: center;
+    padding: 1em;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color60);
+    width: max-content;
+    height: max-content;
+    padding: 2em 1.5em;
+    border-radius: 10px;
+    margin-top: 5em;
+    max-width: 500px;
+
+    img {
+        width: 100%;
+        max-width: 380px;
+        filter: brightness(0%);
+        margin: 1em 0 2em 0;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        padding: 1em;
+        gap: 0.3em;
+        max-height: 50vh;
+        overflow-y: auto;
+
+        li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border: 1px solid rgb(226, 226, 226);
+            border-radius: 10px;
+            span {
+                padding: 1em 1em;
+                margin-right: auto;
+            }
+
+            button {
+                outline: none;
+                cursor: pointer;
+                font-size: 16px;
+                line-height: 20px;
+                font-weight: 600;
+                padding: 15px 12px;
+                margin-left: 5px;
+                border-radius: 8px;
+                border: none;
+                transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+                background: var(--corp1);
+                color: #fff;
+
+                &:hover {
+                    background: var(--corp1dark);
+                }
+            }
+        }
+    }
+}
+
+.add-user {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    input {
+        padding: 5px;
+        width: 150px;
+    }
+    
+    button {
+        outline: none;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        padding: 5px 9px;
+        margin-left: 5px;
+        border-radius: 8px;
+        border: none;
+        transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+        background: var(--corp1);
+        color: #fff;
+
+        &:hover {
+            background: var(--corp1dark);
+        }  
+    }
+}
+
+.user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1em;
+    span { font-weight: bold;}
+    ul {
+        border: 1px solid gray;
+        border-radius: 12px;
+        padding: 10px;
+    }
+}

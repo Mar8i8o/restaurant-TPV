@@ -1,0 +1,329 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+*, *::before, *::after {
+  box-sizing: border-box; /* Set the sizing of an element to include it's border */
+}
+
+* {
+  margin: 0; /* Set the default margin to 0 */
+  padding: 0; /* Set the default padding to 0 */
+  text-decoration: none;
+}
+
+ul {
+  list-style: none; /* Turn off numbered and unordered list decoration */
+}
+
+html:focus-within {
+  scroll-behavior: smooth; /* Make the scrolling inside of any scrollable element smooth */
+}
+
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip-ink: auto; /* Makes link undelines look better */
+}
+
+img, picture, svg, video, canvas {
+  max-width: 100%; /* Makes it responsive */
+  height: auto; /* Makes it responsive */
+  vertical-align: middle; /* Makes text next to inline images look better */
+  font-style: italic; /* If the images don't load it makes the alt decription look better */
+  background-repeat: no-repeat;
+  /* The background repeat and size are there if you want to load a picture first like a backroung image that is worse quality while the better quality image loads */
+  background-size: cover;
+}
+
+input, button, textarea, select {
+  font: inherit; /* Makes these elements inherit fonts */
+}
+
+/* Turns off animation for people who don't want to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition: none;
+  }
+}
+body, html {
+  height: 100%; /* Makes the body element full screen */
+  scroll-behavior: smooth; /* Makes normal scrolling smooth */
+}
+
+:root {
+  /* COLORS */
+  --accentColor: rgb(255, 242, 120);
+  --color60: #FCFCFC;
+  --color60dark: #e5e5e5;
+  --tableBorder: #ededed;
+  --color30: rgb(51, 51, 51);
+  --color30light: rgb(76, 76, 76);
+  --corp1: #007934;
+  --corp1dark: #00642b;
+  --corp1cristal: #007934d1;
+  --red: #ff000072;
+  /* SHADOWS */
+  --divShadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+@font-face {
+  font-family: "Britanic";
+  src: url("/fonts/BRITANIC.TTF") format("opentype");
+}
+@font-face {
+  font-family: "DolceVita-bold";
+  src: url("/fonts/DolceVitaHeavyBold.TTF") format("opentype");
+}
+* {
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+} 
+nav {
+  padding-top: 1em;
+  color: var(--color60);
+  background-color: var(--corp1);
+  max-width: 350px;
+}
+
+nav div:nth-child(1) {
+  width: 220px;
+  padding: 1.5em 1em;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+}
+
+nav ul li {
+  display: flex;
+  gap: 10px;
+  padding: 1em;
+  width: 100%;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+nav ul li:hover {
+  background-color: #008f3d;
+  transition: 0.2s;
+  font-weight: bold;
+  padding-left: 1.5em;
+}
+
+nav ul li object {
+  width: 20px;
+}
+
+nav a {
+  color: inherit;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  padding: 2em;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+main #mainTitle {
+  margin-bottom: 1em;
+} 
+.uiWindow-bg, .uiWindow-blurBg {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10vh;
+  width: 100vw;
+  height: 100vh;
+}
+
+.uiWindow-blurBg {
+  -webkit-backdrop-filter: blur(2px) brightness(90%);
+  backdrop-filter: blur(2px) brightness(90%);
+}
+
+.uiWindow {
+  display: flex;
+  flex-direction: column;
+  padding: 2em 1.5em;
+  background-color: var(--color60);
+  border-radius: 15px;
+}
+
+.uiWindow .uiWindow-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.uiWindow .uiWindow-nav button {
+  z-index: 99;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  font-weight: bolder;
+}
+
+.uiWindow .uiWindow-nav button:hover {
+  cursor: pointer;
+}
+
+.uiWindow .uiWindow-nav button object {
+  background-color: transparent;
+  width: 40px;
+}
+
+.uiWindow .uiWindow-nav button object:hover {
+  cursor: pointer;
+} 
+#receipts-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  justify-content: space-around;
+}
+
+.receipt-container {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 24%;
+  background-color: var(--color60dark);
+  max-height: 350px;
+}
+@media (width < 1090px) {
+  .receipt-container {
+    flex-basis: 30%;
+  }
+}
+.receipt-container:hover {
+  filter: brightness(110%);
+  cursor: pointer;
+}
+.receipt-container img {
+  border-radius: 20px 20px 0 0;
+  height: 70%;
+}
+.receipt-container .receipt-container-info {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 5px;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.receipt-window .receipt-window-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1em 0 0 0;
+}
+.receipt-window .receipt-window-main section {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 40vw;
+  padding-right: 2em;
+  color: gray;
+  font-style: italic;
+  line-height: 1.5;
+}
+.receipt-window .receipt-window-main section a {
+  font-weight: bold;
+  color: var(--corp1);
+}
+.receipt-window .receipt-window-main aside {
+  display: flex;
+  flex-direction: column;
+  max-width: 270px;
+  width: auto;
+  color: #808080;
+}
+.receipt-window .receipt-window-main aside img {
+  width: 100%;
+}
+.receipt-window .receipt-window-main aside .div-btn {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  width: 100%;
+  height: 100%;
+  align-items: end;
+  justify-content: right;
+}
+.receipt-window .receipt-window-main aside .div-btn:hover {
+  cursor: pointer;
+}
+.receipt-window .receipt-window-main aside .div-btn button {
+  width: 45px;
+  height: 45px;
+  background: transparent;
+  border: 0;
+}
+.receipt-window .receipt-window-main aside .div-btn button:hover {
+  cursor: pointer;
+}
+.receipt-window .receipt-window-main aside .div-btn img {
+  width: 50px;
+  height: 50px;
+}
+.receipt-window .receipt-window-main aside .div-btn img:hover {
+  transition: 0.2s;
+  filter: brightness(50%);
+}
+
+@media print {
+  body * {
+    display: none;
+  }
+  .receipt-window {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+  .receipt-window * {
+    display: inline;
+  }
+  .receipt-window button {
+    display: none;
+  }
+}
+@page {
+  size: auto;
+  margin: 0.5rem 0;
+}/*# sourceMappingURL=receipts.css.map */
+
+
+
+.recipes-list-container {
+  display: flex;
+  flex-wrap: wrap; /* Permitir que las tarjetas se ajusten a múltiples filas */
+  justify-content: space-around; /* Espaciado entre las tarjetas */
+  margin: 20px; /* Margen general */
+}

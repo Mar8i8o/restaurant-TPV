@@ -1,0 +1,117 @@
+@use './index.css';
+@use './layout.css';
+
+main {
+    display: flex;
+    flex-direction: column;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2em;
+
+
+        .section-title {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+        }
+
+        hr {
+            margin-bottom: 1em;
+        }
+
+        object {
+            width: 45px;
+        }
+
+        .section-data {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+    }
+}
+
+.bubble {
+    background: var(--color60dark);
+    padding: 1em;
+    border-radius: 10px;
+    width: max-content;
+
+        table{
+            border: 1px solid var(--tableBorder);
+            border-collapse: collapse;
+            border-radius: 10px;
+        
+            th, td {
+                border: 1px solid var(--tableBorder);
+                text-align: left;
+                padding: 10px;
+            }
+        
+            thead {
+                background-color: var(--color60dark);
+            }
+        
+            object {
+                width: 20px;
+            }
+    }
+}
+
+#table-stockBajo{
+    h4 {
+        text-align: center;
+        margin-bottom: 1em;
+
+    }
+}
+
+#table-movimientos{
+    h4 {
+        text-align: center;
+        margin-bottom: 1em;
+    }
+}
+
+.smallStatsBubble {
+    background-color: var(--color60dark);
+    padding: 1em;
+    border-radius: 25px;
+    box-shadow: var(--divShadow);
+    width: 420px;
+
+    div {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        margin-bottom: 5px;
+
+        h3 {
+            width: fit-content;
+        }
+    
+        span {
+            width: fit-content;
+            font-style: italic;
+            font-weight: bold;
+            color: rgb(1, 184, 1);
+        }
+
+        select {
+            margin-left: auto;
+            background: transparent;
+            border: none;
+            font-style: italic;
+        }
+    }
+
+    select {
+        margin-left: auto;
+        background: transparent;
+        border: none;
+        font-style: italic;
+    }
+}

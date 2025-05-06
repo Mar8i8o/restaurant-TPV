@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+*, *::before, *::after {
+  box-sizing: border-box; /* Set the sizing of an element to include it's border */
+}
+
+* {
+  margin: 0; /* Set the default margin to 0 */
+  padding: 0; /* Set the default padding to 0 */
+  text-decoration: none;
+}
+
+ul {
+  list-style: none; /* Turn off numbered and unordered list decoration */
+}
+
+html:focus-within {
+  scroll-behavior: smooth; /* Make the scrolling inside of any scrollable element smooth */
+}
+
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip-ink: auto; /* Makes link undelines look better */
+}
+
+img, picture, svg, video, canvas {
+  max-width: 100%; /* Makes it responsive */
+  height: auto; /* Makes it responsive */
+  vertical-align: middle; /* Makes text next to inline images look better */
+  font-style: italic; /* If the images don't load it makes the alt decription look better */
+  background-repeat: no-repeat;
+  /* The background repeat and size are there if you want to load a picture first like a backroung image that is worse quality while the better quality image loads */
+  background-size: cover;
+}
+
+input, button, textarea, select {
+  font: inherit; /* Makes these elements inherit fonts */
+}
+
+/* Turns off animation for people who don't want to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition: none;
+  }
+}
+body, html {
+  height: 100%; /* Makes the body element full screen */
+  scroll-behavior: smooth; /* Makes normal scrolling smooth */
+}
+
+:root {
+  /* COLORS */
+  --accentColor: rgb(255, 242, 120);
+  --color60: #FCFCFC;
+  --color60dark: #e5e5e5;
+  --tableBorder: #ededed;
+  --color30: rgb(51, 51, 51);
+  --color30light: rgb(76, 76, 76);
+  --corp1: #007934;
+  --corp1dark: #00642b;
+  --corp1cristal: #007934d1;
+  --red: #ff000072;
+  /* SHADOWS */
+  --divShadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+@font-face {
+  font-family: "Britanic";
+  src: url("/fonts/BRITANIC.TTF") format("opentype");
+}
+@font-face {
+  font-family: "DolceVita-bold";
+  src: url("/fonts/DolceVitaHeavyBold.TTF") format("opentype");
+}
+* {
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+} 
+main {
+  padding: 2em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#new-recipe-form {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+#new-recipe-form div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#new-recipe-form h4 {
+  margin-top: 1em;
+}
+#new-recipe-form input {
+  padding: 5px;
+}
+#new-recipe-form .ingredient-container div {
+  display: flex;
+  flex-direction: row;
+}
+#new-recipe-form .ingredient-container div input:nth-child(1) {
+  width: 100%;
+}
+#new-recipe-form .ingredient-container div input:nth-child(2) {
+  width: 100px;
+  text-align: center;
+}
+#new-recipe-form .ingredient-container div input:nth-child(3) {
+  width: 100px;
+  text-align: center;
+}
+#new-recipe-form .ingredient-container div button {
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  padding: 7px 12px;
+  margin-left: 5px;
+  border-radius: 8px;
+  border: none;
+  transition: box-shadow 0.2s ease 0s, transform 0.1s ease 0s;
+  background: var(--corp1);
+  color: #fff;
+}
+#new-recipe-form .ingredient-container div button:hover {
+  background: var(--corp1dark);
+}
+#new-recipe-form #ingredients-bubbles-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 1em;
+}
+#new-recipe-form #ingredients-bubbles-container .ingredient-bubble {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 10px;
+  gap: 5px;
+  background-color: var(--corp1cristal);
+  border-radius: 5px;
+  border: 2px solid var(--corp1cristal);
+}
+#new-recipe-form #ingredients-bubbles-container .ingredient-bubble span {
+  color: white;
+  font-weight: bold;
+}
+#new-recipe-form #ingredients-bubbles-container .ingredient-bubble button {
+  color: white;
+  font-weight: bold;
+  background: none;
+  border: none;
+}
+#new-recipe-form #ingredients-bubbles-container .ingredient-bubble button:hover {
+  cursor: pointer;
+}
+#new-recipe-form .form-img {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#new-recipe-form .form-img button {
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 14px 24px;
+  border: none;
+  transition: box-shadow 0.2s ease 0s, transform 0.1s ease 0s;
+  background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+  color: #fff;
+}
+#new-recipe-form .submit {
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-top: 1em;
+  padding: 14px 24px;
+  border: none;
+  transition: box-shadow 0.2s ease 0s, transform 0.1s ease 0s;
+  background: var(--corp1);
+  color: #fff;
+}
+#new-recipe-form .submit:hover {
+  background: var(--corp1dark);
+}
+#new-recipe-form .form-price div {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: end;
+  gap: 5px;
+}
+#new-recipe-form .form-price input {
+  width: 60px;
+  padding: 7px;
+}
+#new-recipe-form .form-price span {
+  color: gray;
+  font-weight: bold;
+}/*# sourceMappingURL=new-recipe.css.map */
