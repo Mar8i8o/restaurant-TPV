@@ -67,7 +67,7 @@
         mesas.forEach(mesa => {
           const btn = document.createElement('button');
           btn.className = 'mesa-btn';
-          btn.textContent = `Mesa ${mesa.nombre}`;
+          btn.textContent = `${mesa.nombre}`;
           btn.addEventListener('click', () => {
             window.location.href = `index.php?mesa=${encodeURIComponent(mesa.nombre)}`;
           });

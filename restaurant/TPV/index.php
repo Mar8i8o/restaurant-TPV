@@ -59,41 +59,42 @@
   </div>
 
   <script>
-    const grid = document.getElementById('productosGrid');
-    const errorHeader = document.getElementById('errorHeader');
-    const contenedorCategorias = document.querySelector('.categorias-dinamicas');
-    const panelProductos = document.getElementById('panelProductos');
-    const delButton = document.getElementById('delButton');
-    const cobrarButton = document.getElementById('cobrarButton');
-    const modalConfirmacion = document.getElementById('modalConfirmacion');
-    const confirmarCobro = document.getElementById('confirmarCobro');
-    const cancelarCobro = document.getElementById('cancelarCobro');
-    let productos = [];
-    let productoSeleccionado = null;
+  const grid = document.getElementById('productosGrid');
+  const errorHeader = document.getElementById('errorHeader');
+  const contenedorCategorias = document.querySelector('.categorias-dinamicas');
+  const panelProductos = document.getElementById('panelProductos');
+  const delButton = document.getElementById('delButton');
+  const cobrarButton = document.getElementById('cobrarButton');
+  const modalConfirmacion = document.getElementById('modalConfirmacion');
+  const confirmarCobro = document.getElementById('confirmarCobro');
+  const cancelarCobro = document.getElementById('cancelarCobro');
+  let productos = [];
+  let productoSeleccionado = null;
 
-    // Obtener nombre de mesa desde URL
-    function obtenerParametro(nombre) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(nombre);
-    }
+  function obtenerParametro(nombre) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(nombre);
+  }
 
-    const nombreMesa = obtenerParametro('mesa');
-    document.getElementById('nombreMesa').textContent = nombreMesa ? nombreMesa : 'Sin nombre';
+  const nombreMesa = obtenerParametro('mesa');
+  document.getElementById('nombreMesa').textContent = nombreMesa ? nombreMesa : 'Sin nombre';
 
-    fetch('database/platos.php')
-      .then(response => response.json())
-      .then(data => {
-        if (data.error) {
-          errorHeader.textContent = "ERROR DATABASE CONNECTION";
-        } else {
-          productos = data;
-          mostrarProductos(productos);
-        }
-      })
-      .catch(error => {
-        console.error('Error al obtener los productos:', error);
+  // Cargar productos desde la base de datos
+  fetch('database/platos.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
         errorHeader.textContent = "ERROR DATABASE CONNECTION";
-      });
+      } else {
+        productos = data;
+        mostrarProductos(productos);
+        cargarComandasDesdeBD(); // Cargar las comandas al cargar la página
+      }
+    })
+    .catch(error => {
+      console.error('Error al obtener los productos:', error);
+      errorHeader.textContent = "ERROR DATABASE CONNECTION";
+    });
 
     fetch('database/categorias.php')
       .then(response => response.json())
@@ -129,102 +130,179 @@
       });
     });
 
-    function mostrarProductos(lista) {
-      grid.innerHTML = '';
-      if (lista.length === 0) {
-        grid.innerHTML = '<p>No hay productos disponibles</p>';
-      } else {
-        lista.forEach(producto => {
-          const btn = document.createElement('button');
-          btn.className = 'producto-btn';
-          btn.textContent = `${producto.nombre} - ${producto.Precio}€`;
-          btn.addEventListener('click', () => agregarProductoAlPanel(producto));
-          grid.appendChild(btn);
-        });
-      }
-    }
-
-    function agregarProductoAlPanel(producto) {
-      const existente = panelProductos.querySelector(`[data-producto-id="${producto.id}"]`);
-      if (existente) {
-        const cantidadEl = existente.querySelector('.cantidad');
-        const totalEl = existente.querySelector('.total');
-        const cantidad = parseInt(cantidadEl.textContent) + 1;
-        const total = (cantidad * parseFloat(producto.Precio)).toFixed(2);
-        cantidadEl.textContent = cantidad;
-        totalEl.textContent = `${total}€`;
-        if (productoSeleccionado !== existente) {
-          if (productoSeleccionado) productoSeleccionado.classList.remove('seleccionado');
-          existente.classList.add('seleccionado');
-          productoSeleccionado = existente;
-        }
-      } else {
+  // Mostrar productos en el grid
+  function mostrarProductos(lista) {
+    grid.innerHTML = '';
+    if (lista.length === 0) {
+      grid.innerHTML = '<p>No hay productos disponibles</p>';
+    } else {
+      lista.forEach(producto => {
         const btn = document.createElement('button');
-        btn.className = 'linea-producto';
-        btn.dataset.productoId = producto.id;
-        btn.innerHTML = `
-          <span class="cantidad">1</span>x 
-          <span class="nombre">${producto.nombre}</span> - 
-          <span class="precio">${parseFloat(producto.Precio).toFixed(2)}€</span> = 
-          <span class="total">${parseFloat(producto.Precio).toFixed(2)}€</span>
-        `;
-        btn.addEventListener('click', () => {
-          if (productoSeleccionado && productoSeleccionado !== btn) {
-            productoSeleccionado.classList.remove('seleccionado');
-          }
-          if (productoSeleccionado === btn) {
-            btn.classList.remove('seleccionado');
-            productoSeleccionado = null;
-          } else {
-            btn.classList.add('seleccionado');
-            productoSeleccionado = btn;
-          }
-        });
-        panelProductos.appendChild(btn);
-        if (productoSeleccionado) productoSeleccionado.classList.remove('seleccionado');
-        btn.classList.add('seleccionado');
-        productoSeleccionado = btn;
-      }
-      actualizarTotal();
-    }
-
-    function actualizarTotal() {
-      const lineas = panelProductos.querySelectorAll('.linea-producto');
-      let total = 0;
-      lineas.forEach(linea => {
-        const totalTexto = linea.querySelector('.total').textContent.replace('€', '');
-        total += parseFloat(totalTexto);
+        btn.className = 'producto-btn';
+        btn.textContent = `${producto.nombre} - ${producto.Precio}€`;
+        btn.addEventListener('click', () => agregarProductoAlPanel(producto));
+        grid.appendChild(btn);
       });
-      document.getElementById('totalPedido').textContent = total.toFixed(2) + '€';
+    }
+  }
+
+  // SELECCIONAR PRODUCTO PARA AGREGAR AL PANEL
+  function agregarProductoAlPanel(producto) {
+    console.log('Producto seleccionado');
+    const existente = panelProductos.querySelector(`[data-producto-id="${producto.id}"]`);
+
+    // Si el producto ya está en el panel, simplemente actualizamos su cantidad
+    if (existente) {
+      const cantidadEl = existente.querySelector('.cantidad');
+      const totalEl = existente.querySelector('.total');
+      const cantidad = parseInt(cantidadEl.textContent) + 1;
+      const total = (cantidad * parseFloat(producto.Precio)).toFixed(2);
+      cantidadEl.textContent = cantidad;
+      totalEl.textContent = `${total}€`;
+
+      // Solo se actualiza la base de datos cuando se agrega un producto o se cambia la cantidad
+      actualizarComandaEnBD(producto.id, cantidad);
+
+      if (productoSeleccionado !== existente) {
+        if (productoSeleccionado) productoSeleccionado.classList.remove('seleccionado');
+        existente.classList.add('seleccionado');
+        productoSeleccionado = existente;
+      }
+    } else {
+      // Si el producto no está en el panel, lo agregamos
+      const btn = document.createElement('button');
+      btn.className = 'linea-producto';
+      btn.dataset.productoId = producto.id;
+      btn.innerHTML = `
+        <span class="cantidad">1</span>x 
+        <span class="nombre">${producto.nombre}</span> - 
+        <span class="precio">${parseFloat(producto.Precio).toFixed(2)}€</span> = 
+        <span class="total">${parseFloat(producto.Precio).toFixed(2)}€</span>
+      `;
+      btn.addEventListener('click', () => {
+        if (productoSeleccionado && productoSeleccionado !== btn) {
+          productoSeleccionado.classList.remove('seleccionado');
+        }
+        if (productoSeleccionado === btn) {
+          btn.classList.remove('seleccionado');
+          productoSeleccionado = null;
+        } else {
+          btn.classList.add('seleccionado');
+          productoSeleccionado = btn;
+        }
+      });
+      panelProductos.appendChild(btn);
+      if (productoSeleccionado) productoSeleccionado.classList.remove('seleccionado');
+      btn.classList.add('seleccionado');
+      productoSeleccionado = btn;
+
+      // Insertamos el producto en la base de datos (agregar la comanda)
+      actualizarComandaEnBD(producto.id, 1);  // En este caso, iniciamos la cantidad en 1
     }
 
-    delButton.addEventListener('click', () => {
-      if (productoSeleccionado) {
-        productoSeleccionado.remove();
-        productoSeleccionado = null;
-        actualizarTotal();
-      }
-    });
+    // Actualizamos el total
+    actualizarTotal();
+  }
 
-    // Mostrar modal cuando el usuario haga clic en "Cobrar"
-    cobrarButton.addEventListener('click', () => {
-      modalConfirmacion.style.display = 'block';
+  // Actualizar el total del pedido
+  function actualizarTotal() {
+    const lineas = panelProductos.querySelectorAll('.linea-producto');
+    let total = 0;
+    lineas.forEach(linea => {
+      const totalTexto = linea.querySelector('.total').textContent.replace('€', '');
+      total += parseFloat(totalTexto);
     });
+    document.getElementById('totalPedido').textContent = total.toFixed(2) + '€';
+  }
 
-    // Acción al confirmar el cobro (aceptar)
-    confirmarCobro.addEventListener('click', () => {
-      // Eliminar todos los productos del panel
-      panelProductos.innerHTML = '';
-      // Reiniciar el total
+  // Actualizar la base de datos con los cambios
+  function actualizarComandaEnBD(productoId, cantidad) {
+    fetch('database/comandas.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        mesa: nombreMesa,   // Esto lo pasamos desde el parámetro de la URL
+        producto_id: productoId,
+        cantidad: cantidad
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Comanda actualizada:', data);
+    })
+    .catch(error => {
+      console.error('Error al actualizar la comanda:', error);
+    });
+  }
+
+  // Cargar comandas de la base de datos
+  function cargarComandasDesdeBD() {
+    fetch(`database/comandas.php?mesa=${nombreMesa}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data); // Verifica qué datos se están recibiendo
+        if (Array.isArray(data)) {  // Asegúrate de que sea un array
+          data.forEach(comanda => {
+            const producto = productos.find(p => p.id == comanda.producto_id);
+            if (producto) {
+              // Verifica si el producto ya está en el panel antes de agregarlo
+              const existente = panelProductos.querySelector(`[data-producto-id="${producto.id}"]`);
+              if (existente) {
+                // Si existe, solo actualizamos la cantidad
+                const cantidadEl = existente.querySelector('.cantidad');
+                const cantidad = parseInt(cantidadEl.textContent) + comanda.cantidad; // Sumar las cantidades
+                const totalEl = existente.querySelector('.total');
+                const total = (cantidad * parseFloat(producto.Precio)).toFixed(2);
+                cantidadEl.textContent = cantidad;
+                totalEl.textContent = `${total}€`;
+
+                // Solo actualizamos la base de datos si la cantidad es diferente
+                actualizarComandaEnBD(producto.id, cantidad);
+              } else {
+                // Si no existe, agregamos el producto al panel
+                for (let i = 0; i < comanda.cantidad; i++) {
+                  agregarProductoAlPanel(producto); // Esto ya manejará la cantidad
+                }
+              }
+            }
+          });
+        } else {
+          console.error("La respuesta no es un array válido", data);
+        }
+      })
+      .catch(error => {
+        console.error('Error al cargar las comandas:', error);
+        errorHeader.textContent = "ERROR AL CARGAR COMANDAS";
+      });
+  }
+
+  // Eliminar producto del panel
+  delButton.addEventListener('click', () => {
+    if (productoSeleccionado) {
+      productoSeleccionado.remove();
+      productoSeleccionado = null;
       actualizarTotal();
-      modalConfirmacion.style.display = 'none'; // Cerrar el modal
-    });
+    }
+  });
 
-    // Acción al cancelar el cobro
-    cancelarCobro.addEventListener('click', () => {
-      modalConfirmacion.style.display = 'none'; // Cerrar el modal sin hacer nada
-    });
-  </script>
+  // Cobrar el pedido
+  cobrarButton.addEventListener('click', () => {
+    modalConfirmacion.style.display = 'block';
+  });
+
+  // Confirmar cobro
+  confirmarCobro.addEventListener('click', () => {
+    panelProductos.innerHTML = '';
+    actualizarTotal();
+    modalConfirmacion.style.display = 'none';
+  });
+
+  // Cancelar cobro
+  cancelarCobro.addEventListener('click', () => {
+    modalConfirmacion.style.display = 'none';
+  });
+</script>
+
 
   <style>
     /* Estilos para la ventana modal */
